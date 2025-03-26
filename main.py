@@ -1,19 +1,25 @@
 from chatterbot import ChatBot
-from chatterbot.trainers import ListTrainer
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # Create a new instance of a ChatBot
-chatbot = ChatBot('Example Bot')
+chatbot = ChatBot('PlannerBot')
 
 # Create a new trainer for the chatbot
-trainer = ListTrainer(chatbot)
+trainer = ChatterBotCorpusTrainer(chatbot)
+
+# Train the chatbot based on the english corpus
+trainer.train("chatterbot.corpus.english")
+
+# Get a response to an input statement
+chatbot.get_response("Hello, how are you today?")
 
 # Train the chatbot with a list of conversations
 training_data = [
     "Hi, how are you?",
     "I am good, thank you!",
     "What is your name?",
-    "My name is Example Bot.",
-    "Nice to meet you, Example Bot.",
+    "My name is Planner Bot.",
+    "Nice to meet you, Planner Bot.",
     "Nice to meet you too!"
 ]
 
