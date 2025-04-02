@@ -68,11 +68,14 @@ class ChatBotHandler:
 
 # Define training data
 training_data = [
-    ["Hi", "Hi there! I'm Oswald the Lucky PlannerBot, how can I help?"],
-    ["Hi!", "Hi!"],
-    ["How are you?", "I'm good, how are you?"],
-    ["I'm good, how are you?", "I'm doing well"],
-    ["I'm doing well", "Good to hear, how can I help?"],
+    ["Hi", "Hello! How can I assist you today?"],
+    ["Hello", "Hi there! How can I help you?"],
+    ["How are you?", "I'm just a bot, so I'm not sure?"],
+    ["What's your name?", "I'm Oswald the Lucky PlannerBot."],
+    ["Thank you", "You're welcome! Have a great day!"],
+    ["Thanks", "No problem! If you need anything else, just ask!"],
+    ["Thanks", "You're welcome! Have a great day!"],
+    ["Thanks", "No problem! Cya around soon!"],
     ["I'm going to Disney World soon. What are the best rides at Magic Kingdom?",
      "Here are my favorites: Space Mountain, TRON Lightcycle Run, Pirates of the Caribbean, Tiana's Bayou Adventure, Big Thunder Mountain RailRoad, and Buzz Lightyear's Space Ranger Spin!"],
     ["I'm visiting Disney World soon. What are the top rides at Magic Kingdom?",
@@ -97,7 +100,6 @@ training_data = [
      "That's my favorite park actually. Here are my favorite rides there: Avatar Flight of Passage, Kilimanjaro Safaris, Na'vi River Journey, DINOSAUR, Expedition Everest - Legend of the Forbidden Mountain, and Kali River Rapids!"],
     ["I'm planning a trip to Disney World soon. What are the must-see rides at Animal Kingdom?",
      "That's my favorite park actually. Here are my favorite rides there: Avatar Flight of Passage, Kilimanjaro Safaris, Na'vi River Journey, DINOSAUR, Expedition Everest - Legend of the Forbidden Mountain, and Kali River Rapids!"],
-    ["Thank you", "No problem! Cya real soon!"],
 ]
 
 # Write the training data dictionary to a JSON file
