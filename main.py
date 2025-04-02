@@ -53,7 +53,7 @@ class ChatBotHandler:
         self.chatbot = chatbot
 
     def handle_user_input(self):
-        print("Hi there! I'm Oswald, how can I help?")
+        print("Hi there! I'm Oswald the Lucky PlannerBot, how can I help?")
         while True:
             user_input = input("You: ").lower() # Convert to lowercase
             if user_input in ['thank you', 'thanks']:
@@ -62,7 +62,7 @@ class ChatBotHandler:
             else:
                 try:
                     response = self.chatbot.get_response(user_input)
-                    print(f"Oswald: {response}")
+                    print(f"Oswald the Lucky PlannerBot: {response}")
                 except Exception as e:
                     print(f"Error getting response from Oswald: {e}")
 
@@ -71,7 +71,7 @@ training_data = [
     ["Hi", "Hello! How can I assist you today?"],
     ["Hello", "Hi there! How can I help you?"],
     ["How are you?", "I'm just a bot, but I'm here to help you!"],
-    ["What's your name?", "I'm Oswald."],
+    ["What's your name?", "I'm Oswald the Lucky PlannerBot."],
     ["Thank you", "You're welcome! Have a great day!"],
     ["Thanks", "No problem! If you need anything else, just ask!"],
     ["Thanks", "You're welcome! Have a great day!"],
@@ -172,7 +172,7 @@ with open('training_data.json', 'w') as file:
     json.dump(training_data, file, indent=4)
 
 if __name__ == "__main__":
-    trainer = ChatBotTrainer('Oswald', 'training_data.json')
+    trainer = ChatBotTrainer('Oswald the Lucky PlannerBot', 'training_data.json')
     trainer.download_nltk_data()
     chatbot = trainer.get_chatbot()
 
