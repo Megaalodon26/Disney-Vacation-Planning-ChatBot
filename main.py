@@ -1,4 +1,5 @@
 # Disney Planning ChatBot
+import chatterbot.logic
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 import nltk, json, os
