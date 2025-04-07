@@ -2,7 +2,35 @@
 import chatterbot.logic
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
-import nltk, json, os
+import nltk, json, os, sqlite3
+
+# Load the training data from the JSON file
+with open('training_data.json', 'r') as file:
+    training_data = json.load(file)
+
+# Connect to the SQLite3 database (or create it if it doesn't exist)
+conn = sqlite3.connect('training_data.sqlite3')
+cursor = conn.cursor()
+
+# Create the training_data table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS training_data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    input TEXT NOT NULL,
+    response TEXT NOT NULL
+)
+''')
+
+# Insert the training data into the training_data table
+for pair in training_data:
+    cursor.execute('''
+    INSERT INTO training_data (input, response)
+    VALUES (?, ?)
+    ''', (pair[0], pair[1]))
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
 
 # Create ChatBotTrainer class to initialize the chatbot and handle training
 class ChatBotTrainer:
@@ -49,6 +77,7 @@ class ChatBotTrainer:
             self.initialize_and_train_chatbot()
         return self.chatbot
 
+
 # Create ChatBotHandler class to handle interactions and responses
 class ChatBotHandler:
     def __init__(self, chatbot):
@@ -62,109 +91,12 @@ class ChatBotHandler:
                 print("Oswald: No problem, cya real soon!")
                 break
             else:
+
                 try:
                     response = self.chatbot.get_response(user_input)
                     print(f"Oswald the Lucky PlannerBot: {response}")
                 except Exception as e:
                     print(f"Error getting response from Oswald: {e}")
-
-# Define training data
-training_data = [
-    ["Hi", "Hello! How can I assist you today?"],
-    ["Hello", "Hi there! How can I help you?"],
-    ["How are you?", "I'm just a bot, but I'm here to help you!"],
-    ["What's your name?", "I'm Oswald the Lucky PlannerBot."],
-    ["Thank you", "You're welcome! Have a great day!"],
-    ["Thanks", "No problem! If you need anything else, just ask!"],
-    ["Thanks", "You're welcome! Have a great day!"],
-    ["Thanks", "No problem, cya around real soon!"],
-    ["Thank you", "No problem, cya around real soon!"],
-    ["Thanks", "No problem! If you need anything else, just ask!"],
-    [
-        "I'm going to Disney World soon. What are the best rides at Magic Kingdom?",
-        "Here are my favorites: Space Mountain, TRON Lightcycle Run, Pirates of the Caribbean, "
-        "Tiana's Bayou Adventure, Big Thunder Mountain RailRoad, and Buzz Lightyear's Space Ranger Spin!"
-    ],
-    [
-        "Rides at Magic Kingdom?",
-        "Here are my favorites: Space Mountain, TRON Lightcycle Run, Pirates of the Caribbean, "
-        "Tiana's Bayou Adventure, Big Thunder Mountain RailRoad, and Buzz Lightyear's Space Ranger Spin!"
-    ],
-    [
-        "I'm visiting Disney World soon. What are the top rides at Magic Kingdom?",
-        "Here are my favorites: Space Mountain, TRON Lightcycle Run, Pirates of the Caribbean, "
-        "Tiana's Bayou Adventure, Big Thunder Mountain RailRoad, and Buzz Lightyear's Space Ranger Spin!"
-    ],
-    [
-        "I'm planning a trip to Disney World. What are the must-see rides at Magic Kingdom?",
-        "Here are my favorites: Space Mountain, TRON Lightcycle Run, Pirates of the Caribbean, "
-        "Tiana's Bayou Adventure, Big Thunder Mountain RailRoad, and Buzz Lightyear's Space Ranger Spin!"
-    ],
-    [
-        "I'm going to Disney World soon. What are the best rides at Hollywood Studios?",
-        "Here are my favorites: Mickey & Minnie's Runaway Railway, Millennium Falcon: Smuggler's Run, Slinky Dog Dash, "
-        "Rock 'n' Roller Coaster Starring Aerosmith, Star Tours - The Adventures Continue, Star Wars: Rise of the Resistance, "
-        "Toy Story Mania!, and The Twilight Zone Tower of Terror!"
-    ],
-    [
-        "Rides at Hollywood Studios?",
-        "Here are my favorites: Mickey & Minnie's Runaway Railway, Millennium Falcon: Smuggler's Run, Slinky Dog Dash, "
-        "Rock 'n' Roller Coaster Starring Aerosmith, Star Tours - The Adventures Continue, Star Wars: Rise of the Resistance, "
-        "Toy Story Mania!, and The Twilight Zone Tower of Terror!"
-    ],
-    [
-        "I'm visiting Disney World soon. What are the top rides at Hollywood Studios?",
-        "Here are my favorites: Mickey & Minnie's Runaway Railway, Millennium Falcon: Smuggler's Run, Slinky Dog Dash, "
-        "Rock 'n' Roller Coaster Starring Aerosmith, Star Tours - The Adventures Continue, Star Wars: Rise of the Resistance, "
-        "Toy Story Mania!, and The Twilight Zone Tower of Terror!"
-    ],
-    [
-        "I'm planning a trip to Disney World soon. What are the must-see rides at Hollywood Studios?",
-        "Here are my favorites: Mickey & Minnie's Runaway Railway, Millennium Falcon: Smuggler's Run, Slinky Dog Dash, "
-        "Rock 'n' Roller Coaster Starring Aerosmith, Star Tours - The Adventures Continue, Star Wars: Rise of the Resistance, "
-        "Toy Story Mania!, and The Twilight Zone Tower of Terror!"
-    ],
-    [
-        "I'm going to Disney World soon. What are the best rides at EPCOT?",
-        "Here are my favorites: Guardians of the Galaxy: Cosmic Rewind, Living with the Land, Remy's Ratatouille Adventure, "
-        "The Seas with Nemo and Friends, Test Track, and Soarin' Around the World!"
-    ],
-    [
-        "Rides at EPCOT?",
-        "Here are my favorites: Guardians of the Galaxy: Cosmic Rewind, Living with the Land, Remy's Ratatouille Adventure, "
-        "The Seas with Nemo and Friends, Test Track, and Soarin' Around the World!"
-    ],
-    [
-        "I'm visiting Disney World soon. What are the top rides at EPCOT?",
-        "Here are my favorites: Guardians of the Galaxy: Cosmic Rewind, Living with the Land, Remy's Ratatouille Adventure, "
-        "The Seas with Nemo and Friends, Test Track, and Soarin' Around the World!"
-    ],
-    [
-        "I'm planning a trip to Disney World soon. What are the must-see rides at EPCOT?",
-        "Here are my favorites: Guardians of the Galaxy: Cosmic Rewind, Living with the Land, Remy's Ratatouille Adventure, "
-        "The Seas with Nemo and Friends, Test Track, and Soarin' Around the World!"
-    ],
-    [
-        "I'm going to Disney World soon. What are the best rides at Animal Kingdom?",
-        "That's my favorite park actually. Here are my favorite rides there: Avatar Flight of Passage, Kilimanjaro Safaris, "
-        "Na'vi River Journey, DINOSAUR, Expedition Everest - Legend of the Forbidden Mountain, and Kali River Rapids!"
-    ],
-    [
-        "Rides at Animal Kingdom?",
-        "That's my favorite park actually. Here are my favorite rides there: Avatar Flight of Passage, Kilimanjaro Safaris, "
-        "Na'vi River Journey, DINOSAUR, Expedition Everest - Legend of the Forbidden Mountain, and Kali River Rapids!"
-    ],
-    [
-        "I'm visiting Disney World soon. What are the top rides at Animal Kingdom?",
-        "That's my favorite park actually. Here are my favorite rides there: Avatar Flight of Passage, Kilimanjaro Safaris, "
-        "Na'vi River Journey, DINOSAUR, Expedition Everest - Legend of the Forbidden Mountain, and Kali River Rapids!"
-    ],
-    [
-        "I'm planning a trip to Disney World soon. What are the must-see rides at Animal Kingdom?",
-        "That's my favorite park actually. Here are my favorite rides there: Avatar Flight of Passage, Kilimanjaro Safaris, "
-        "Na'vi River Journey, DINOSAUR, Expedition Everest - Legend of the Forbidden Mountain, and Kali River Rapids!"
-    ],
-]
 
 # Convert training_data into a list of dictionaries
 training_data_dicts = [{"input": pair[0], "response": pair[1]} for pair in training_data]
