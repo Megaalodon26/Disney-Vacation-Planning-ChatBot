@@ -1,0 +1,62 @@
+[
+  [
+    "hi",
+    "Hello! I'm PlannerBot — ask me about the best rides at Disney parks."
+  ],
+  [
+    "hello",
+    "Hi! Ask me about a park and I'll tell you the best rides."
+  ],
+  [
+    "what are the best rides at magic kingdom",
+    "Top rides at Magic Kingdom: Space Mountain, Seven Dwarfs Mine Train, Splash Mountain, Big Thunder Mountain, Haunted Mansion."
+  ],
+  [
+    "what are the best rides at epcot",
+    "Top rides at EPCOT: Remy's Ratatouille Adventure, Guardians of the Galaxy: Cosmic Rewind, Soarin', Test Track."
+  ],
+  [
+    "what are the best rides at hollywood studios",
+    "Top rides at Disney's Hollywood Studios: Star Wars: Rise of the Resistance, Slinky Dog Dash, Tower of Terror, Rock 'n' Roller Coaster."
+  ],
+  [
+    "what are the best rides at animal kingdom",
+    "Top rides at Animal Kingdom: Avatar Flight of Passage, Expedition Everest, Kilimanjaro Safaris, Dinosaur."
+  ],
+  [
+    "best rides at animal kingdom?",
+    "<Top rides at Animal Kingdom: Avatar Flight of Passage, Expedition Everest, Kilimanjaro Safaris, Dinosaur.>"
+  ],
+  [
+    "best rides at animal kingdom",
+    "Top rides at Animal Kingdom: Avatar Flight of Passage, Expedition Everest, Kilimanjaro Safaris, Dinosaur."
+  ],
+  [
+    "best rides at hollywood studios",
+    "Top rides at Disney's Hollywood Studios: Star Wars: Rise of the Resistance, Slinky Dog Dash, Tower of Terror, Rock 'n' Roller Coaster."
+  ],
+  [
+    "best rides at animal kingdom?",
+    "Top rides at Animal Kingdom: Avatar Flight of Passage, Expedition Everest, Kilimanjaro Safaris, Dinosaur."
+  ],
+  [
+    "top rides at epcot?",
+    "Top rides at EPCOT: Remy's Ratatouille Adventure, Guardians of the Galaxy: Cosmic Rewind, Soarin', Test Track."
+  ],
+  [
+    "best rides at epcot?",
+    "Top rides at EPCOT: Remy's Ratatouille Adventure, Guardians of the Galaxy: Cosmic Rewind, Soarin', Test Track."
+  ],
+  [
+    "best rides at magic kingdom?",
+    "Top rides at Magic Kingdom: Space Mountain, Seven Dwarfs Mine Train,TRON, Big Thunder Mountain, Tiana's Bayou Adventure."
+  ],
+  [
+    "top rides at hollywood studios?",
+    "Top rides at Disney's Hollywood Studios: Star Wars: Rise of the Resistance, Slinky Dog Dash, Tower of Terror, Rock 'n' Roller Coaster."
+  ],
+  [
+    "Best rides at animal kingdom?",
+    "Top rides at Animal Kingdom: Avatar Flight of Passage, Expedition Everest, Kilimanjaro Safaris, Dinosaur."
+  ]
+]
