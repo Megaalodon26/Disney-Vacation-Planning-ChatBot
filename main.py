@@ -1,11 +1,6 @@
-# main.py
-# Disney Planning ChatBot - improved: confidence checks, reset, JSONL logging, in-session corrections
-
-import chatterbot.logic
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 import nltk, json, os
-from pathlib import Path
 
 from storage import JsonlLogger  # new logger module
 
@@ -131,11 +126,11 @@ class ChatBotHandler:
                 continue
 
             if user_input.lower() in ['/exit', 'quit', 'q']:
-                print("PlannerBot: No problem, cya real soon!")
+                print("PlannerBot: No problem, talk to you soon!")
                 break
 
             if user_input.lower() == '/reset':
-                print("PlannerBot: Resetting conversation storage and reinitializing — this may take a moment...")
+                print("PlannerBot: Resetting conversation storage and reinitializing — this may take a minute...")
                 self.trainer.reset_database()
                 self.chatbot = self.trainer.get_chatbot()
                 print("PlannerBot: Done. Conversation storage reset.")
